@@ -1,0 +1,72 @@
+@import"../../../assets/scss/colorVariables";
+
+$stepperMainColor: $gray-200;
+$size: 50px;
+
+ol.stepper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+
+
+li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    width: $size;
+    height: $size;
+    border-radius: $size;
+    color: $white;
+
+        &:after {
+            position: absolute;
+            content: "";
+            z-index: 2;
+            width: $size;
+            height: $size;
+            border-radius: $size;
+            background-image: url('data:image/svg+xml;utf8,<svg width="31" height="25" viewBox="0 0 31 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.8177 0.775511C26.3459 0.272595 27.0489 -0.00543797 27.7782 8.06076e-05C28.5076 0.00559918 29.2062 0.294238 29.7268 0.80509C30.2474 1.31594 30.5492 2.00905 30.5685 2.73816C30.5877 3.46728 30.323 4.17536 29.8302 4.71301L14.8677 23.4255C14.6104 23.7026 14.2998 23.925 13.9547 24.0794C13.6095  24.2338 13.2367 24.3169 12.8586 24.3239C12.4805 24.3309 12.1049 24.2616 11.7542 24.1201C11.4036 23.9787 11.085 23.7679 10.8177 23.5005L0.895156 13.578C0.618831 13.3205 0.397198 13.01 0.243478 12.665C0.0897582 12.32 0.00710064 11.9476 0.000437699 11.57C-0.00622524 11.1923 0.0632431 10.8172 0.204697 10.467C0.346151 10.1168 0.556693 9.79869 0.823763 9.53162C1.09083 9.26455 1.40896 9.05401 1.75917 8.91255C2.10937 8.7711 2.48448 8.70163 2.86212 8.70829C3.23975 8.71496 3.61218 8.79761 3.95718 8.95133C4.30217 9.10505 4.61267 9.32669 4.87016 9.60301L12.7227 17.4518L25.7464 0.858012C25.7699 0.82914 25.7949 0.801596 25.8214 0.775511H25.8177Z" fill="white"/></svg>');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: $teal;
+            transform: scale(1);
+            transition: 0.35s transform ease-in-out;
+        }  
+        
+        &:not(:last-child) {
+            margin-right: 60px;
+            &:before {
+                content:"";
+                z-index:-2;
+                top: 50%; //garis tengah
+                left: 100%;
+                position: absolute;
+                width: $size + 10;
+                height: 1px;
+                background-color: $stepperMainColor;
+            }
+        }
+        &.active{
+            &:after {
+                z-index: -1;
+                background: $white;
+                border: 1px solid $stepperMainColor;
+                transform: scale(1.2);
+            }
+            background-color: $stepperMainColor;
+            color: $gray-500;
+
+            & ~ li {
+                color: $gray-500;
+                background: $stepperMainColor;
+                &:after {
+                    content: none;
+                }
+            }
+        }
+    }
+}   
